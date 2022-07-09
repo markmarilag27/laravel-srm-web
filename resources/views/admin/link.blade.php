@@ -1,8 +1,8 @@
 @extends('layouts.main')
 
 {{-- title --}}
-@push('title') Simple Resource Management @endpush
+@push('title') Admin Links @endpush
 
 @section('content')
-home
+
 @endsection

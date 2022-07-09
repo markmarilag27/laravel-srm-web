@@ -8,11 +8,13 @@ services:
             context: ./.docker
             dockerfile: Dockerfile
         image: php:8.7-fpm-alpine
-        container_name: app
+        container_name: php
         restart: unless-stopped
+        extra_hosts:
+            - host.docker.internal:host-gateway
         ports:
-            - 80:8000
-            - 3000:8000
+            - 80:80
+            - 3000:3000
         volumes:
             - ./:/var/www/html
         networks:

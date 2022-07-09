@@ -43,6 +43,6 @@ RUN chown -R www-data:www-data .
 
 USER www-data
 
-EXPOSE 8000
+EXPOSE 80
 
-CMD php artisan serve --host=0.0.0.0
+CMD php artisan serve --host=0.0.0.0 --port=80
