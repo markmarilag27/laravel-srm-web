@@ -4,5 +4,5 @@
 @push('title') Simple Resource Management @endpush
 
 @section('content')
-
+home
 @endsection

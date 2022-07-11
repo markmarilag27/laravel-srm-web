@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\MediaService;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 
@@ -33,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // bindings
+        $this->app->bind(MediaService::class);
     }
 }

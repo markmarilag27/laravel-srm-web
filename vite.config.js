@@ -3,10 +3,13 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
+    server: {
+      host: '0.0.0.0'
+    },
     plugins: [
         laravel([
-            'resources/css/app.css',
-            'resources/ts/app.js',
+            'resources/css/main.css',
+            'resources/js/main.js',
         ]),
         vue({
             template: {
@@ -27,10 +30,5 @@ export default defineConfig({
                 }
             }
         }
-    ],
-    resolve: {
-        alias: {
-            '@': '/resources/ts'
-        }
-    }
+    ]
 });
