@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 trait InteractsWithPagination
 {
-    public function scopeHasSimplePagination(Builder $query, ?int $page = null, ?int $limit = 10)
+    public function scopeHasSimplePagination(Builder $query, ?int $page = null, ?int $limit = null)
     {
         if (blank($page)) {
             return $query;

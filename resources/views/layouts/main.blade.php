@@ -14,11 +14,11 @@
 
     @stack('head_style')
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/main.css', 'resources/js/main.js'])
 </head>
 
 <body class="h-full">
-    <div class="min-h-full">
+    <div id="app" class="min-h-full">
         @if (request()->is('admin/*') || request()->is('admin'))
             @include('partials.admin_top_navigation')
         @endif

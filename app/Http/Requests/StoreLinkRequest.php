@@ -17,8 +17,7 @@ class StoreLinkRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'min:3', 'max:255', 'unique:links'],
-            'link' => ['required', 'string', 'min:3', 'max:255'],
-            'is_new_tab' => ['required', 'boolean'],
+            'url' => ['required', 'string', 'min:3', 'max:255']
         ];
     }
 }

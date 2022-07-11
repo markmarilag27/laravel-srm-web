@@ -16,9 +16,8 @@ class UpdateLinkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'min:3', 'max:255', 'unique:links'],
-            'link' => ['required', 'string', 'min:3', 'max:255'],
-            'is_new_tab' => ['required', 'boolean'],
+            'title' => ['required', 'string', 'min:3', 'max:255', 'unique:links,id,' . $this->link->id],
+            'url' => ['required', 'string', 'min:3', 'max:255'],
         ];
     }
 }

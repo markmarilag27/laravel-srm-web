@@ -17,7 +17,7 @@ class StoreMediaRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'min:3', 'max:255', 'unique:media'],
-            'uploaded' => ['required', 'mimes:pdf', 'file', 'size:10240'],
+            'uploaded' => ['required', 'mimes:pdf', 'max:10240'],
         ];
     }
 }

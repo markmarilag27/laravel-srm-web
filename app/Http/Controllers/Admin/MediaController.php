@@ -15,23 +15,44 @@ class MediaController extends Controller
 {
     private MediaService $mediaService;
 
-    public function __construct()
+    public function __construct(MediaService $mediaService)
     {
+        $this->mediaService = $mediaService;
     }
 
-    public function index(Request $request)
+    public function index(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
     {
-        $data = Media::query()->hasSimplePagination($request->paginate ?? 1, $request->limit ?? 10);
+        $data = Media::query()->latest('id')->hasSimplePagination($request->paginate ?? 1, $request->limit ?? 10);
 
         return view('admin.media', compact('data'));
     }
 
-    public function store(StoreMediaRequest $request)
-    {}
+    public function store(StoreMediaRequest $request): \Illuminate\Http\RedirectResponse
+    {
+        $validatedRequest = $request->validated();
+        $media = $this->mediaService->createNewMedia($validatedRequest);
 
-    public function update(UpdateMediaRequest $request, Media $media)
-    {}
+        return redirect()->back()->with([
+            'success' => $media->title . ' has been created!'
+        ]);
+    }
 
-    public function destroy(Media $media)
-    {}
+    public function update(UpdateMediaRequest $request, Media $media): \Illuminate\Http\RedirectResponse
+    {
+        $validatedRequest = $request->validated();
+        $media = $this->mediaService->updateExistingMedia($validatedRequest, $media);
+
+        return redirect()->back()->with([
+            'success' => $media->title . ' has been updated!'
+        ]);
+    }
+
+    public function destroy(Media $media): \Illuminate\Http\RedirectResponse
+    {
+        $media->delete();
+
+        return redirect()->back()->with([
+            'success' => $media->title . ' has been deleted!'
+        ]);
+    }
 }

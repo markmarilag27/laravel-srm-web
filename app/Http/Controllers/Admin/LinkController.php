@@ -12,23 +12,41 @@ use Illuminate\Http\Request;
 
 class LinkController extends Controller
 {
-    public function __construct()
+    public function index(Request $request): \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
     {
+        $data = Link::query()->latest('id')->hasSimplePagination($request->paginate ?? 1, $request->limit ?? 10);
+
+        return view('admin.link', compact('data'));
     }
 
-    public function index(Request $request)
+    public function store(StoreLinkRequest $request): \Illuminate\Http\RedirectResponse
     {
-        $data = Link::query()->hasSimplePagination($request->paginate, $request->limit);
+        $validatedRequest = $request->validated();
+        $validatedRequest['is_new_tab'] = $request->has('is_new_tab');
+        $link = Link::create($validatedRequest);
 
-        return view('admin.link', ['data' => $data]);
+        return redirect()->back()->with([
+            'success' => $link->title . ' has been updated!'
+        ]);
     }
 
-    public function store(StoreLinkRequest $request)
-    {}
+    public function update(UpdateLinkRequest $request, Link $link): \Illuminate\Http\RedirectResponse
+    {
+        $validatedRequest = $request->validated();
+        $validatedRequest['is_new_tab'] = $request->has('is_new_tab');
+        $link->update($validatedRequest);
 
-    public function update(UpdateLinkRequest $request, Link $link)
-    {}
+        return redirect()->back()->with([
+            'success' => $link->title . ' has been updated!'
+        ]);
+    }
 
-    public function destroy(Link $link)
-    {}
+    public function destroy(Link $link): \Illuminate\Http\RedirectResponse
+    {
+        $link->delete();
+
+        return redirect()->back()->with([
+            'success' => $link->title . ' has been deleted!'
+        ]);
+    }
 }

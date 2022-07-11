@@ -19,7 +19,7 @@ class Link extends Model
     protected $fillable = [
         'uuid',
         'title',
-        'link',
+        'url',
         'is_new_tab',
     ];
 
