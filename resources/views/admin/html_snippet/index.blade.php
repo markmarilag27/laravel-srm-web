@@ -23,7 +23,7 @@
             <tr>
                 <td class="border-t border-slate-100 p-4 pl-8 text-slate-500 truncate max-w-xs text-left">{{ $htmlSnippet->title }}</td>
                 <td class="border-t border-slate-100 p-4 pl-8 text-slate-500 text-right">
-                    <div id="test" class="flex justify-end space-x-4">
+                    <div class="flex justify-end space-x-4">
                         <a href="{{ route('admin.htmlSnippet.edit', ['htmlSnippet' => $htmlSnippet->uuid]) }}" class="py-1.5 px-5 rounded-md flex text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm text-center">
                             Edit
                         </a>
