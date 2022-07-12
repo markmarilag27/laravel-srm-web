@@ -35,7 +35,7 @@
                     {{ $link->is_new_tab ? 'Yes' : 'No' }}
                 </td>
                 <td class="border-t border-slate-100 p-4 pl-8 text-slate-500 text-right">
-                    <div id="test" class="flex justify-end space-x-4">
+                    <div class="flex justify-end space-x-4">
                         <form-modal
                             key="{{ $link->uuid }}"
                             button-name="Edit"

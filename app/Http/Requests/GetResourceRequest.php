@@ -24,8 +24,17 @@ class GetResourceRequest extends FormRequest
                 'sometimes',
                 'required',
                 'string',
-                Rule::in(ResourceTypeEnum::cases())
+                Rule::in($this->getAcceptedTypeValues())
             ],
+        ];
+    }
+
+    private function getAcceptedTypeValues(): array
+    {
+        return [
+            ResourceTypeEnum::MEDIA->value,
+            ResourceTypeEnum::HTML_SNIPPET->value,
+            ResourceTypeEnum::LINK->value
         ];
     }
 }
